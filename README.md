@@ -25,7 +25,7 @@ this whole idea was inspired by one 10-minuets explanation about the most basic 
 ##  ####    ########    ##      ##  ########    ##########              ##########      ##      ##  ##  ##  ##          
 ##      ##  ##    ##    ##########  ##          ##      ##              ##      ##      ##      ##      ##  ##          
   ######    ##      ##  ##      ##  ##          ##      ##      ##      ##      ##      ##      ##      ##  ##########
-  shows the graph using rgb as the xyz axice
-  NOTICE: requires loading the page from index.html, otherwise the data wont be shown (at least you can look at the pretty axice)
+  shows the graph using rgb as the xyz axes
+  NOTICE: requires loading the page from index.html, otherwise the data wont be shown (at least you can look at the pretty axes)
   also theres a back button wow
 
