@@ -16,7 +16,6 @@ wss.on('connection', function connection(ws) {;
   // Send a message
   while (toSend.length!=0)
   {
-    console.log("dendign");
     ws.send(toSend.pop());
   }
 });
@@ -79,9 +78,128 @@ function handleData(data = '')
             })
         })
     }
+    else if (dataArray[0]=='gen')
+    {
+        generate(dataArray[1])
+    }
+    else if (dataArray[0]=='guess')
+    {
+        guess(dataArray[1],dataArray[2],dataArray[3]);
+    }
     else
     {
         toSend.push("illegal");
     }
     }
+}
+
+//generate a given color from data
+function generate(name = '')
+{
+    console.log(name);
+    var sumR=0
+    var sumG=0
+    var sumB=0
+    var count = 0
+    let db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE,(err)=>{
+        if (err) return console.error();
+    })
+    sql = "SELECT * FROM DATA WHERE name='"+name+"'";
+    console.log(sql);
+    db.all(sql,(err,data)=>
+    {
+        if (err) return;
+        data.forEach((row)=>
+        {
+            console.log(Number(row.r))
+            sumR += Number(row.r);
+            sumG += Number(row.g);
+            sumB += Number(row.b);
+            count++;
+            console.log(sumR);
+        })
+        let avgR = (sumR/count).toFixed(0);
+        let avgG = (sumG/count).toFixed(0);
+        let avgB = (sumB/count).toFixed(0);
+        toSend.push('gened|'+name+"|"+avgR+"|"+avgG+"|"+avgB);
+    })
+
+}
+
+
+function guess(r,g,b)
+{
+    let db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE,(err)=>{
+        if (err) return console.error();
+    })
+    sql = "SELECT * FROM DATA ORDER BY name";
+    db.all(sql,(err,data)=>
+    {
+        if (err) return;
+        let avgs ={
+            'red':[0,0,0,0],
+            'blue':[0,0,0,0],
+            'yellow':[0,0,0,0],
+            'black':[0,0,0,0],
+            'white':[0,0,0,0],
+            'dark gray':[0,0,0,0],
+            'light gray':[0,0,0,0],
+            'brown':[0,0,0,0],
+            'pink':[0,0,0,0],
+            'light blue':[0,0,0,0],
+            'purple':[0,0,0,0],
+            'orange':[0,0,0,0],
+            'light green':[0,0,0,0],
+            'dark green':[0,0,0,0],
+            'beige':[0,0,0,0],
+            'olive':[0,0,0,0],
+            'turquoise':[0,0,0,0],
+            'bordeaux':[0,0,0,0],
+
+
+        }
+        data.forEach((row)=>
+        {
+
+            avgs[row.name][3] += 1;
+            if (avgs[row.name][3]>1)
+            {
+                avgs[row.name][0] =(avgs[row.name][0]/(avgs[row.name][3]))*(avgs[row.name][3]-1);
+                avgs[row.name][0] += row.r/(avgs[row.name][3]);
+                avgs[row.name][1] =(avgs[row.name][1]/(avgs[row.name][3]))*(avgs[row.name][3]-1);
+                avgs[row.name][1] += row.g/(avgs[row.name][3]);
+                avgs[row.name][2] =(avgs[row.name][2]/(avgs[row.name][3]))*(avgs[row.name][3]-1);
+                avgs[row.name][2] += row.b/(avgs[row.name][3]);
+            }
+            else
+            {
+                avgs[row.name][0] = row.r;
+                avgs[row.name][1] = row.g;
+                avgs[row.name][2] = row.b;
+            }
+        }
+        )
+        let closestAvg =-1;
+        let closest  = '';
+        Object.keys(avgs).forEach((color)=>
+        {
+            avgs[color][0] = Number(avgs[color][0].toFixed(0));
+            avgs[color][1] = Number(avgs[color][1].toFixed(0));
+            avgs[color][2] = Number(avgs[color][2].toFixed(0));
+            let distance = compareDistance(r,g,b,avgs[color][0],avgs[color][1],avgs[color][2])
+            if (closestAvg == -1 | distance<closestAvg)
+            {
+                closestAvg = distance;
+                closest = color;
+            }
+        });
+        toSend.push('guessed|'+closest+"|"+r+'|'+g+'|'+b);
+    })
+}
+
+function compareDistance(x1,x2,x3,y1,y2,y3)
+{
+    let sum = Math.pow(y1-x1,2)+Math.pow(y2-x2,2)+Math.pow(y3-x3,2)
+    sum = Math.sqrt(sum);
+    return sum;
 }

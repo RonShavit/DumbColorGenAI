@@ -52,6 +52,21 @@
     text-align: center;
     margin: auto;
 }
+.buttonBox textarea
+{
+    box-sizing: border-box;
+    width:25%;
+    border: none;
+    border-radius: 10px;
+    min-height: 25px;
+    max-height: 35px;
+    min-width: 100px;
+    resize: none;
+    font-size:medium;
+    overflow: hidden;
+    text-align: center;
+}
+
 .dropDownBox
 {
     margin-top: 30px;
@@ -98,7 +113,7 @@
                 <option value="brown">brown</option>
                 <option value="pink">pink</option>
                 <option value="light blue">light blue</option>
-                <option value="puple">purple</option>
+                <option value="purple">purple</option>
                 <option value="orange">orange</option>
                 <option value="light green">light green</option>
                 <option value="dark green">dark green</option>
@@ -115,6 +130,14 @@
     </div>
     <div class="buttonBox">
         <button id="but4" >graph</button>
+        <button id="but5">generate color</button>
+        <button id="but6">guess</button>
+    </div>
+    <div class="buttonBox">
+
+        <div>
+            <textarea id="ta4">I guess...</textarea>
+        </div>
     </div>
     <div id="my-div"></div>
 </body>

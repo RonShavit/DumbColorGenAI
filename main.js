@@ -18,7 +18,9 @@ function color(r,g,b) {
 
 
     context.fillStyle = "rgb("+r+","+g+","+b+")";
-
+    document.getElementById('ta1').value=Number(r);
+    document.getElementById('ta2').value=Number(g);
+    document.getElementById('ta3').value=Number(b);
     context.beginPath()
     context.roundRect(window.screen.width/2-100,0,200,200,40)
     context.fill()
@@ -123,6 +125,22 @@ window.addEventListener("load",function() {
         {
             console.log('added '+dataArray[1])
         }
+        else if (dataArray[0]=="gened")
+        {
+            if (dataArray[1]!=undefined)
+            {
+            console.log('gened '+dataArray[1])
+            color(Number(dataArray[2]),Number(dataArray[3]),Number(dataArray[4]))
+            document.getElementById('colorOptions').value=dataArray[1];
+            }
+        }
+        else if (dataArray[0]=='guessed')
+        {
+            color(dataArray[2],dataArray[3],dataArray[4]);
+            console.log('guessed',dataArray[1]);
+            document.getElementById('colorOptions').value = dataArray[1];
+            document.getElementById('ta4').value = 'I guess '+dataArray[1];
+        }
     }
  }
 
@@ -132,11 +150,37 @@ function graphIt()
     socket.send("graph")
     window.location.href = "graph.html";
 }
-
+function generate()
+{
+    let name = document.getElementById('colorOptions').value;
+    socket.send('gen|'+name);
+    location.reload()
+}
+function guess()
+{
+    let text1 = document.getElementById('ta1').value;
+    let text2 = document.getElementById('ta2').value;
+    let text3 = document.getElementById('ta3').value;
+    socket.send("guess|"+text1+"|"+text2+"|"+text3)
+    location.reload();
+}
 window.addEventListener("load",function() {
     document.getElementById("but4").addEventListener("click",graphIt);
 
  })
+
+
+
+ window.addEventListener("load",function() {
+    document.getElementById("but5").addEventListener("click",generate);
+
+ })
+
+ window.addEventListener("load",function() {
+    document.getElementById("but6").addEventListener("click",guess);
+
+ })
+
 
 
 

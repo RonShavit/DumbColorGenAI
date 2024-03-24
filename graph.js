@@ -32,6 +32,9 @@ for (let i=1;i<10;i++)
     context.fillRect(395,100+35*i,15,5)
     context.fillRect(400,102+35*i,700,1)
 
+    context.fillRect(400-20*i,455+20*i,700,1)
+    context.fillRect(195+20*i,300-20*i,1,350)
+
     context.fillRect(400+70*i,445,5,15)
     context.fillRect(402+70*i,100,1,350)
 
@@ -40,6 +43,24 @@ for (let i=1;i<10;i++)
     context.lineTo(400-20*i+5,450+20*i+5)
     context.stroke()
     context.closePath()
+
+    context.beginPath()
+    context.strokeStyle = 'rgb(0,0,0)'
+    context.lineWidth =1;
+    context.moveTo(402+70*i,460)
+    context.lineTo(202+70*i,660)
+    context.stroke();
+    context.closePath();
+    context.lineWidth  =5;
+
+    context.beginPath()
+    context.strokeStyle = 'rgb(0,0,0)'
+    context.lineWidth =1;
+    context.moveTo(400,450-35*i)
+    context.lineTo(200,650-35*i)
+    context.stroke();
+    context.closePath();
+    context.lineWidth  =5
 }
 
 //handle data from server
