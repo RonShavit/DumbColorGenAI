@@ -16,39 +16,39 @@ const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
 context.lineWidth = 5;
 context.fillStyle = 'rgb(255,0,0)';
-context.fillRect(400,450,700,5);
+context.fillRect(400,360,700,5);
 context.fillStyle = 'rgb(0,0,255)';
-context.fillRect(400,100,5,350);
+context.fillRect(400,10,5,350);
 context.fillStyle = 'rgb(0,0,0)';
 context.beginPath();
-context.moveTo(400,450)
-context.lineTo(200,650)
+context.moveTo(400,360)
+context.lineTo(200,560)
 context.strokeStyle = 'rgb(0,255,0)'
 context.stroke();
 context.closePath();
 context.strokeStyle = 'rgb(0,0,0)'
-for (let i=1;i<10;i++)
+for (let i=1;i<=10;i++)
 {
-    context.fillRect(395,100+35*i,15,5)
-    context.fillRect(400,102+35*i,700,1)
+    context.fillRect(395,-27+35*i,15,5)
+    context.fillRect(400,-25+35*i,702,1)
 
-    context.fillRect(400-20*i,455+20*i,700,1)
-    context.fillRect(195+20*i,300-20*i,1,350)
+    context.fillRect(402-20*i,365+20*i,703,1)
+    context.fillRect(175+20*i,235-20*i,1,340)
 
-    context.fillRect(400+70*i,445,5,15)
-    context.fillRect(402+70*i,100,1,350)
+    context.fillRect(398+70*i,355,5,15)
+    context.fillRect(400+70*i,10,1,350)
 
     context.beginPath();
-    context.moveTo(400-20*i-5,450+20*i-5)
-    context.lineTo(400-20*i+5,450+20*i+5)
+    context.moveTo(400-20*i-5,360+20*i-5)
+    context.lineTo(400-20*i+5,360+20*i+5)
     context.stroke()
     context.closePath()
 
     context.beginPath()
     context.strokeStyle = 'rgb(0,0,0)'
     context.lineWidth =1;
-    context.moveTo(402+70*i,460)
-    context.lineTo(202+70*i,660)
+    context.moveTo(400+70*i,370)
+    context.lineTo(205+70*i,565)
     context.stroke();
     context.closePath();
     context.lineWidth  =5;
@@ -56,8 +56,8 @@ for (let i=1;i<10;i++)
     context.beginPath()
     context.strokeStyle = 'rgb(0,0,0)'
     context.lineWidth =1;
-    context.moveTo(400,450-35*i)
-    context.lineTo(200,650-35*i)
+    context.moveTo(400,360-35*i)
+    context.lineTo(195,565-35*i)
     context.stroke();
     context.closePath();
     context.lineWidth  =5

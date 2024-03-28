@@ -4,11 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="point.js"></script>
+    <style>
+    .buttonBox
+    {
+    margin-left: calc(100vw*0.425);
+    height: 50px;
+    }
+    .buttonBox button
+    {
+    text-align: center;
+    width: 15%;
+    height: 100%;
+    
+    }   
+    </style>
     <title>Color graph</title>
 </head>
 <body>
-    <canvas width="1500" height="680" id="canvas2"></canvas>
+    <div class="buttonBox">
+        <button onclick="location.href='index.html'">back</button>
+    </div>
+    <canvas width="1500" height="590" id="canvas2"></canvas>
     <script src="graph.js"></script>
-    <button onclick="location.href='index.html'">back</button>
+
 </body>
 </html> 

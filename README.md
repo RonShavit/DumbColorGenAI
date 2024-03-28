@@ -29,3 +29,5 @@ this whole idea was inspired by one 10-minuets explanation about the most basic 
   NOTICE: requires loading the page from index.html, otherwise the data wont be shown (at least you can look at the pretty axes)
   also theres a back button wow
 
+v.1.0.1 28/3/2024
+  updated ui/ux

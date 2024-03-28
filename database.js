@@ -140,6 +140,7 @@ function guess(r,g,b)
             'red':[0,0,0,0],
             'blue':[0,0,0,0],
             'yellow':[0,0,0,0],
+            'green':[0,0,0,0],
             'black':[0,0,0,0],
             'white':[0,0,0,0],
             'dark gray':[0,0,0,0],
