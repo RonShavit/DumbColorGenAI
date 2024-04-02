@@ -77,3 +77,16 @@ function handleData(data = '')
     }
 }
 
+function graphThat()
+{
+   colorOption = document.getElementById('colorOptionsG').value;
+   socket.send("graph|"+colorOption);
+   window.location.href = "graph.html";
+}
+
+window.addEventListener("load",function() {
+    document.getElementById("gbut2").addEventListener("click",graphThat);
+
+ })
+
+

@@ -139,7 +139,7 @@ window.addEventListener("load",function() {
             color(dataArray[2],dataArray[3],dataArray[4]);
             console.log('guessed',dataArray[1]);
             document.getElementById('colorOptions').value = dataArray[1];
-            document.getElementById('ta4').value = 'I guess '+dataArray[1];
+            document.getElementById('ta4').innerText = 'I guess '+dataArray[1];
         }
     }
  }
@@ -147,7 +147,7 @@ window.addEventListener("load",function() {
 //switch to graph
 function graphIt()
 {
-    socket.send("graph")
+    socket.send("graph|*")
     window.location.href = "graph.html";
 }
 function generate()
@@ -180,6 +180,8 @@ window.addEventListener("load",function() {
     document.getElementById("but6").addEventListener("click",guess);
 
  })
+
+
 
 
 

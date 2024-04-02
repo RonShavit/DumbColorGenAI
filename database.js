@@ -69,6 +69,11 @@ function handleData(data = '')
             if (err) return console.error();
         })
         sql = 'SELECT * FROM DATA ORDER BY g DESC';
+        if (dataArray[1]!='*')
+        {
+        sql = "SELECT * FROM DATA WHERE name='"+dataArray[1]+"' ORDER BY g DESC";
+            
+        }
         db.all(sql,(err,data)=>
         {
             if (err) return;
